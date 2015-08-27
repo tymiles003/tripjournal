@@ -13,6 +13,12 @@ gem 'rails_12factor', group: :production # makes deploy to Heroku easier
 gem 'dotenv-rails'
 gem 'responders', '~> 2.0'
 gem 'gpx'
+gem 'instagram'
+gem 'oj'
+gem 'rabl'
+gem 'slim-rails'
+gem 'pusher'
+gem 'sidekiq'
 
 group :development do
   gem 'web-console', '~> 2.0'
@@ -29,12 +35,6 @@ group :development, :test do
   gem 'pry-rails'
   gem 'factory_girl_rails'
 end
-
-gem 'oj'
-gem 'rabl'
-gem 'slim-rails'
-
-gem 'pusher'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery'

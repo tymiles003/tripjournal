@@ -11,10 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150826094520) do
+ActiveRecord::Schema.define(version: 20150827171118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "instagram_sources", force: :cascade do |t|
+    t.string   "user_id"
+    t.string   "last_media_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.integer  "kind",       default: 0, null: false
+    t.string   "title"
+    t.string   "text"
+    t.string   "image_url"
+    t.string   "source_url"
+    t.string   "source_id"
+    t.string   "author"
+    t.point    "latlng"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "points", force: :cascade do |t|
     t.point    "latlng",     null: false

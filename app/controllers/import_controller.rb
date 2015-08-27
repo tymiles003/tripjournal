@@ -4,9 +4,13 @@ class ImportController < ApplicationController
 
   end
 
-  def create
+  def gpx
     Point.import(params[:file].tempfile)
     redirect_to import_url
+  end
+
+  def instagram
+    SyncJob.perform_later
   end
 
 end
