@@ -4,15 +4,23 @@ angular.module('tj').controller 'FeedCtrl', ['$scope', 'leafletData', '$pusher',
 
   $scope.markers = {}
   $scope.paths   = {}
+  $scope.geojson = {
+    data: [],
+    style: {
+      fillColor: "blue",
+      weight: 2,
+      opacity: 1,
+      color: 'white',
+      dashArray: '3',
+      fillOpacity: 0.7
+    }
+  }
   $scope.center  = {}
 
   $http.get('/api/tracks.json').then (response) ->
-    _.each response.data, (track) ->
-      $scope.paths["track_#{track.id}"] = {
-        color: 'blue',
-        weight: 2,
-        latlngs: JSON.parse(track.json)
-      }
+    $scope.geojson = {
+      data: response.data
+    }
 
   $scope.init = (last_position) ->
     $scope.current_position = last_position

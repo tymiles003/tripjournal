@@ -1,2 +1,2 @@
-collection @tracks
-attributes :id, :json
+object false
+node(false) { {type: 'FeatureCollection', features: @tracks.map { |t| JSON.parse(t.json) } } }
