@@ -17,6 +17,13 @@ angular.module('tj').controller 'MapCtrl', ['$scope', 'leafletData', '$pusher', 
   }
   $scope.center  = {}
 
+  $http.get('/api/points.json').then (response) ->
+    $scope.paths.saved_track = {
+      color: 'blue',
+      weight: 2,
+      latlngs: response.data
+    }
+
   $http.get('/api/tracks.json').then (response) ->
     $scope.geojson = {
       data: response.data
