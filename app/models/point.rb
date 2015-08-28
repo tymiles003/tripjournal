@@ -1,5 +1,7 @@
 class Point < ActiveRecord::Base
 
+  after_create :notify
+
   def lat
     self.latlng.first
   end
