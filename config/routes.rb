@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'feeds#index'
+  root to: 'map#index'
 
   get '/notes',             to: 'notes#index',      as: :notes
 
