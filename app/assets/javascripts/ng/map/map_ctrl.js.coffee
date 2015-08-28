@@ -22,10 +22,31 @@ angular.module('tj').controller 'FeedCtrl', ['$scope', 'leafletData', '$pusher',
       data: response.data
     }
 
-  $scope.init = (last_position) ->
-    $scope.current_position = last_position
+  $http.get('/api/notes.json').then (response) ->
+    _.each response.data, (note) ->
+      $scope.markers["note_#{note.id}"] = {
+        lat: note.lat,
+        lng: note.lng,
+        compileMessage: true,
+        message: "<div class='map-note-image'><img class='img-responsive' src='#{note.image_url}'/>@#{note.author}</div>"
+        icon: {
+          type: 'awesomeMarker',
+          icon: _note_icon(note.kind)
+          prefix: 'fa',
+        }
+      }
 
-    $scope.center = _.merge({ zoom: 12 }, $scope.current_position)
+  $scope.init = (last_position) ->
+    $scope.current_position = _.merge(last_position, {
+      icon: {
+        type: 'awesomeMarker',
+        icon: 'car',
+        markerColor: 'red',
+        prefix: 'fa',
+      }
+    })
+
+    $scope.center = _.merge({ zoom: 11 }, $scope.current_position)
 
     $scope.markers = { current_position: $scope.current_position }
 
@@ -39,4 +60,10 @@ angular.module('tj').controller 'FeedCtrl', ['$scope', 'leafletData', '$pusher',
     $scope.markers.current_position = data
     _.merge($scope.center, data) if follow_current_position
     $scope.paths.online_track.latlngs.push data
+
+  _note_icon = (note_type) ->
+    if note_type == 'photo'
+      'instagram'
+    else
+      'comment'
 ]

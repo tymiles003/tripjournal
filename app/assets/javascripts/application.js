@@ -15,6 +15,7 @@
 //= require moment
 //= require jquery
 //= require leaflet
+//= require Leaflet.awesome-markers
 
 //= require angular
 //= require angular-moment
