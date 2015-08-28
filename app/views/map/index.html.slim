@@ -1,2 +1,2 @@
-div.map-container ng-controller="FeedCtrl" ng-init="init({lat: #{@current_position.lat}, lng: #{@current_position.lng}})"
-  leaflet height="100%" width="100%" markers="markers" center="center" paths="paths" geojson="geojson"
+div.map-container ng-controller="MapCtrl" ng-init="init({lat: #{@current_position.lat}, lng: #{@current_position.lng}})"
+  leaflet height="100%" width="100%" center="center" paths="paths" geojson="geojson" markers="markers"

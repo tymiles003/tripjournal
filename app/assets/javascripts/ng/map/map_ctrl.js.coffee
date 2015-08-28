@@ -1,4 +1,4 @@
-angular.module('tj').controller 'FeedCtrl', ['$scope', 'leafletData', '$pusher', '$http', ($scope, leafletData, $pusher, $http) ->
+angular.module('tj').controller 'MapCtrl', ['$scope', 'leafletData', '$pusher', '$http', ($scope, leafletData, $pusher, $http) ->
 
   follow_current_position = true
 
@@ -37,29 +37,45 @@ angular.module('tj').controller 'FeedCtrl', ['$scope', 'leafletData', '$pusher',
       }
 
   $scope.init = (last_position) ->
-    $scope.current_position = _.merge(last_position, {
+    $scope.current_position = {
+      lat: last_position.lat,
+      lng: last_position.lng,
       icon: {
         type: 'awesomeMarker',
         icon: 'car',
         markerColor: 'red',
         prefix: 'fa',
       }
-    })
+    }
 
-    $scope.center = _.merge({ zoom: 11 }, $scope.current_position)
+    $scope.center = {
+      zoom: 16,
+      lat: last_position.lat,
+      lng: last_position.lng,
+      autoDiscover: false
+    }
 
     $scope.markers = { current_position: $scope.current_position }
 
     $scope.paths.online_track = {
       color: 'red',
       weight: 2,
-      latlngs: [ $scope.current_position ]
+      latlngs: [ last_position ]
     }
 
   $pusher.subscribe 'tj:map:update_current_position', (data) ->
-    $scope.markers.current_position = data
-    _.merge($scope.center, data) if follow_current_position
+    $scope.current_position.lat = data.lat
+    $scope.current_position.lng = data.lng
+    if follow_current_position
+      $scope.center.lat = data.lat
+      $scope.center.lng = data.lng
     $scope.paths.online_track.latlngs.push data
+
+  _note_message = (note) ->
+    if note_type == 'photo'
+      "<div class='map-note-image'><img class='img-responsive' src='#{note.image_url}'/>@#{note.author}</div>"
+    else
+      "<div class='map-note-text'>@#{note.text}</div>"
 
   _note_icon = (note_type) ->
     if note_type == 'photo'

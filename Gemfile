@@ -45,7 +45,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-leaflet'
   gem 'rails-assets-angular'
   gem 'rails-assets-angular-moment'
-  gem 'rails-assets-angular-leaflet-directive'
+  gem 'rails-assets-angular-leaflet-directive', '= 0.8.6'
   gem 'rails-assets-Leaflet.awesome-markers'
 end
 
