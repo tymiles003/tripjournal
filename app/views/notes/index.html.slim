@@ -1,0 +1,15 @@
+.container
+  .main
+    ul.cbp_tmtimeline
+      - @notes.each do |n|
+        li
+          time.cbp_tmtime datetime=("#{l(n.created_at, format: :long)}")
+            span =l(n.created_at, format: :note_date)
+            span =l(n.created_at, format: :note_time)
+          .cbp_tmicon.cbp_tmicon-photo
+          .cbp_tmlabel
+            h2 = n.title
+            p = image_tag(n.image_url, class: 'img-responsive')
+            span
+              |@
+              = n.author

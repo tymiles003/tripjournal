@@ -37,9 +37,9 @@ group :development, :test do
 end
 
 source 'https://rails-assets.org' do
+  gem 'rails-assets-modernizr'
   gem 'rails-assets-jquery'
   gem 'rails-assets-lodash'
-  gem 'rails-assets-fontawesome'
   gem 'rails-assets-momentjs'
   gem 'rails-assets-leaflet'
   gem 'rails-assets-angular'

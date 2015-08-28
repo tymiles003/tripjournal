@@ -140,10 +140,10 @@ GEM
     rails-assets-angular-moment (0.10.2)
       rails-assets-angular (>= 1.2.0, < 1.5.0)
       rails-assets-moment (>= 2.8.0, < 2.11.0)
-    rails-assets-fontawesome (4.4.0)
     rails-assets-jquery (2.1.4)
     rails-assets-leaflet (0.7.3)
     rails-assets-lodash (3.10.1)
+    rails-assets-modernizr (2.8.3)
     rails-assets-moment (2.10.6)
     rails-assets-momentjs (2.10.6)
     rails-deprecated_sanitizer (1.0.3)
@@ -271,10 +271,10 @@ DEPENDENCIES
   rails-assets-angular!
   rails-assets-angular-leaflet-directive!
   rails-assets-angular-moment!
-  rails-assets-fontawesome!
   rails-assets-jquery!
   rails-assets-leaflet!
   rails-assets-lodash!
+  rails-assets-modernizr!
   rails-assets-momentjs!
   rails_12factor
   responders (~> 2.0)

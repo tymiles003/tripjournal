@@ -20,4 +20,12 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  time:
+    formats:
+      note_time: "%H:%M"
+      note_date: "%m/%d/%Y"
+  datetime:
+    formats:
+      note_time: "%H:%M"
+      note_date: "%m/%d/%Y"
   hello: "Hello world"
