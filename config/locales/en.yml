@@ -23,9 +23,9 @@ en:
   time:
     formats:
       note_time: "%H:%M"
-      note_date: "%m/%d/%Y"
+      note_date: "%d/%m/%Y"
   datetime:
     formats:
       note_time: "%H:%M"
-      note_date: "%m/%d/%Y"
+      note_date: "%d/%m/%Y"
   hello: "Hello world"
