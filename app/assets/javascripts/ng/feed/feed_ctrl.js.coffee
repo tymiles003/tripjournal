@@ -6,12 +6,13 @@ angular.module('tj').controller 'FeedCtrl', ['$scope', 'leafletData', '$pusher',
   $scope.paths   = {}
   $scope.center  = {}
 
-  $http.get('/api/points.json').then (points) ->
-    $scope.paths.saved_track = {
-      color: 'blue',
-      weight: 2,
-      latlngs: points.data
-    }
+  $http.get('/api/tracks.json').then (response) ->
+    _.each response.data, (track) ->
+      $scope.paths["track_#{track.id}"] = {
+        color: 'blue',
+        weight: 2,
+        latlngs: JSON.parse(track.json)
+      }
 
   $scope.init = (last_position) ->
     $scope.current_position = last_position

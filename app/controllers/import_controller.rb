@@ -5,7 +5,7 @@ class ImportController < ApplicationController
   end
 
   def gpx
-    Point.import(params[:file].tempfile)
+    Track.import(params[:file].tempfile)
     redirect_to import_url
   end
 

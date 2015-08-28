@@ -30,9 +30,13 @@ class Point < ActiveRecord::Base
 
   def self.import(file)
     gpx =  GPX::GPXFile.new(gpx_file: file)
-    transaction do
-      gpx.tracks.first.points.each do |p|
-        connection.execute("INSERT INTO points (latlng, created_at, updated_at) VALUES ('(#{p.lat},#{p.lon})','#{p.time}','#{p.time}')")
+    gpx.tracks.each do |t|
+      points = t.points.map { |p| { x: p.lat, y: p.lon, time: p.time } }
+      points = SimplifyRb.simplify(points, 0.00005, true)
+      transaction do
+        points.each do |p|
+          connection.execute("INSERT INTO points (latlng, created_at, updated_at) VALUES ('(#{p[:x]},#{p[:y]})','#{p[:time]}','#{p[:time]}')")
+        end
       end
     end
   end

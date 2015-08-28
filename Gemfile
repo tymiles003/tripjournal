@@ -19,6 +19,7 @@ gem 'rabl'
 gem 'slim-rails'
 gem 'pusher'
 gem 'sidekiq'
+gem 'simplify_rb'
 
 group :development do
   gem 'web-console', '~> 2.0'
