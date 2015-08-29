@@ -1,2 +1,4 @@
+.nav-button
+  = link_to '', notes_path, class:'fa fa-instagram'
 div.map-container ng-controller="MapCtrl" ng-init="init({lat: #{@current_position.lat}, lng: #{@current_position.lng}})"
-  leaflet height="100%" width="100%" center="center" paths="paths" geojson="geojson" markers="markers"
+  leaflet height="100%" width="100%" center="center" paths="paths" geojson="geojson" markers="markers" defaults="defaults"

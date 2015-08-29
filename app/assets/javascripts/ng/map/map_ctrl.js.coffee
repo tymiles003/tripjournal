@@ -2,6 +2,9 @@ angular.module('tj').controller 'MapCtrl', ['$scope', 'leafletData', '$pusher', 
 
   follow_current_position = true
 
+  $scope.defaults = {
+    zoomControl: false
+  }
   $scope.markers = {}
   $scope.paths   = {}
   $scope.geojson = {
