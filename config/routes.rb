@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get  '/oauth/instagram/connect',  to: 'oauth#connect_instagram', as: :instagram
   get  '/oauth/instagram/callback', to: 'oauth#instagram',         as: :instagram_callback
 
+  post '/webhooks/instagram', to: 'webhooks#instagram'
+
   namespace :api do
     resources :points, only: [:index, :create]
     resources :tracks, only: [:index]
