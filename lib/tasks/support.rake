@@ -3,6 +3,10 @@ namespace :tj do
     SyncJob.perform_later
   end
 
+  task aggregate_points: :environment do
+    AggregatePointsJob.perform_later
+  end
+
   task init: :environment do
     InstagramSource.all.each(&:init!)
   end
