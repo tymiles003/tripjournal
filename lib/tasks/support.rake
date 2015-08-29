@@ -17,7 +17,7 @@ namespace :tj do
     end
 
     task notes: :environment do
-      Track.delete_all
+      Note.delete_all
     end
 
     task sources: :environment do
