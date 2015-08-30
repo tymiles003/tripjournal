@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   get  '/import',           to: 'import#show',      as: :import
   post '/import/instagram', to: 'import#instagram', as: :import_instagram
-  post '/import/gpx',       to: 'import#gpx',       as: :import_gpx
+  post '/import/track',     to: 'import#track',     as: :import_track
 
   get  '/oauth/instagram/connect',  to: 'oauth#connect_instagram', as: :instagram
   get  '/oauth/instagram/callback', to: 'oauth#instagram',         as: :instagram_callback

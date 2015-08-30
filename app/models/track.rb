@@ -4,12 +4,16 @@ class Track < ActiveRecord::Base
     Track.create!(json: to_geojson(simplify(points)), created_at: created_at)
   end
 
-  def self.import(file)
-    gpx =  GPX::GPXFile.new(gpx_file: file)
-    gpx.tracks.map do |t|
-      points = t.points.map { |p| { x: p.lat, y: p.lon } }
-      create_from_points(points, t.points.last.time)
-    end
+  def self.import(filename)
+    ext = filename[-3..-1]
+    tracks = if ext == 'kmz' || ext == 'kml'
+               KmlFile.read(filename)
+             elsif ext == 'gpx'
+               GpxFile.read(filename)
+             else
+               raise 'Unsupported format'
+             end
+    tracks.each { |t| create_from_points(t[:points], t[:created_at]) }
   end
 
   def self.to_geojson(points)

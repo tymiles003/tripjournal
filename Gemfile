@@ -20,6 +20,8 @@ gem 'slim-rails'
 gem 'pusher'
 gem 'sidekiq'
 gem 'simplify_rb'
+gem 'rubyzip'
+gem 'nokogiri'
 
 group :development do
   gem 'web-console', '~> 2.0'
