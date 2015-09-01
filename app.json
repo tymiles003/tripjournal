@@ -1,0 +1,44 @@
+{
+  "name": "Trip Journal",
+  "description": "Dead simple web interface for viewing GPS tracks and online monitoring moving tracker",
+  "repository": "https://github.com/graf-abolmasov/tripjournal",
+  "keywords": [
+    "gps",
+    "tracking",
+    "instagram",
+    "online",
+    "map"
+  ],
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate"
+  },
+  "addons": [
+    "heroku-postgresql:hobby-dev",
+    "pusher:sandbox",
+    "rediscloud:30"
+  ],
+  "env": {
+    "RAILS_ENV": "production",
+    "RACK_ENV": "production",
+    "SECRET_KEY_BASE": {
+      "description": "A secret key for verifying the integrity of signed cookies.",
+      "generator": "secret"
+    },
+    "REDIS_PROVIDER": {
+      "description": "Redis provider (addon) for sidekiq)",
+      "value": "REDIS_CLOUD"
+    },
+    "INSTAGRAM_CLIENT_ID": {
+      "description": "Instagram app client ID. Instagram sync won't work w/o it",
+      "required": false
+    },
+    "INSTAGRAM_CLIENT_SECRET": {
+      "description": "Instagram app secret ID. Instagram sync won't work w/o it",
+      "required": false
+    },
+    "INSTAGRAM_ACCESS_TOKEN": {
+      "description": "Instagram oauth token. Instagram sync won't work w/o it",
+      "required": false
+    }
+  }
+}
