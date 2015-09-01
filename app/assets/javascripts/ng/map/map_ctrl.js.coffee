@@ -1,6 +1,6 @@
-angular.module('tj').controller 'MapCtrl', ['$scope', 'leafletData', '$pusher', '$http', ($scope, leafletData, $pusher, $http) ->
+angular.module('tj').controller 'MapCtrl', ['$scope', 'leafletData', '$pusher', '$http', 'leafletEvents', ($scope, leafletData, $pusher, $http, leafletEvents) ->
 
-  follow_current_position = true
+  $scope.follow_current_position = true
 
   $scope.defaults = {
     zoomControl: false
@@ -18,7 +18,7 @@ angular.module('tj').controller 'MapCtrl', ['$scope', 'leafletData', '$pusher', 
       fillOpacity: 0.7
     }
   }
-  $scope.center  = {}
+  $scope.center = {}
 
   $http.get('/api/points.json').then (response) ->
     $scope.paths.saved_track = {
@@ -73,13 +73,22 @@ angular.module('tj').controller 'MapCtrl', ['$scope', 'leafletData', '$pusher', 
       latlngs: [ last_position ]
     }
 
+  $scope.$on 'leafletDirectiveMap.drag', (event) ->
+    $scope.follow_current_position = false
+
+  $scope.follow_position = () ->
+    $scope.follow_current_position = true
+    _move_center_to($scope.current_position)
+
   $pusher.subscribe 'tj:map:update_current_position', (data) ->
     $scope.current_position.lat = data.lat
     $scope.current_position.lng = data.lng
-    if follow_current_position
-      $scope.center.lat = data.lat
-      $scope.center.lng = data.lng
+    _move_center_to(data) if $scope.follow_current_position
     $scope.paths.online_track.latlngs.push data
+
+  _move_center_to = (location) ->
+    $scope.center.lat = location.lat
+    $scope.center.lng = location.lng
 
   _note_message = (note) ->
     if note_type == 'photo'

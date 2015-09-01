@@ -40,7 +40,14 @@ a:hover {
     padding: 12px;
     text-align: center;
     width: 50px;
+}
+
+.nav-button-first {
     top: 25px;
+}
+
+.nav-button-second {
+    top: 75px;
 }
 
 @media screen and (max-width: 900px) {
