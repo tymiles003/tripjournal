@@ -37,6 +37,7 @@ group :development, :test do
   gem 'pry-doc'
   gem 'pry-rails'
   gem 'factory_girl_rails'
+  gem 'ruby-progressbar'
 end
 
 source 'https://rails-assets.org' do

@@ -1,6 +1,7 @@
 class Track < ActiveRecord::Base
 
   def self.create_from_points(points, created_at)
+    return if points.length == 1
     Track.create!(json: to_geojson(simplify(points)), created_at: created_at)
   end
 

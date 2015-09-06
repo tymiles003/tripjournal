@@ -13,17 +13,8 @@ class Point < ActiveRecord::Base
     }.to_json
   end
 
-  def self.import(file)
-    gpx =  GPX::GPXFile.new(gpx_file: file)
-    gpx.tracks.each do |t|
-      points = t.points.map { |p| { x: p.lat, y: p.lon, time: p.time } }
-      points = SimplifyRb.simplify(points, 0.00005, true)
-      transaction do
-        points.each do |p|
-          connection.execute("INSERT INTO points (latlng, created_at, updated_at) VALUES ('(#{p[:x]},#{p[:y]})','#{p[:time]}','#{p[:time]}')")
-        end
-      end
-    end
+  def to_x_y
+    {x: self.lat, y: self.lng}
   end
 
   private
